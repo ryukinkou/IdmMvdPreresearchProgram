@@ -139,9 +139,117 @@ Space,Wall,Slab,Opening,Beam,Column,Curtain Wall,Stair Flight,Ramp Flight,Equipm
 1.2.2.5 创建项目建造类型
 本流程认为存在一个工业建造类型数据库，可以经由它推导出项目的特定建造类型库。为建筑元素选择不同的建造类型将会影响到项目的主要成本。工业建造类型库来自多个源头。工业建造类型库将可以通过web服务器来访问，或者直接内嵌在拥有BIM认证的应用程序内部。项目的特定建造类型库只包含用于项目相关的建造类型的定义。
 
+一个单体的建造对象取决于客户的需求，可能被分配有一个，两个，三个或者更多的建造类型。
 
+一般认为基于项目建造类型的默认假定只是一个出发点，如果需要进行模拟实验还需事先修改相关数值。
 
+1.2.2.6 分配建造类型到实际过程
+一旦项目空间类型库被创建，设计者会为实际的建筑元素分配建造类型，在合适的建筑元素与类型之间建立联系。
 
+1.2.2.7
+本任务涉及到那些完全没有在项目建造类型库中定义的，或者设计者不满意的独立构造体。原始的数据来自于库的模板，然后根据所处理的特殊空间进行修改（或添加）。完成之后，该构造体的信息会被存入项目构造体类型库里面已备未来的程序使用。
+
+下列的交换需求是需要部分符合的：
+Space,Wall,Slab,Opening,Beam,Column,Curtain Wall,Stair Flight,Ramp Flight,Equipment,Plumbling Fixtures(垂直固定装置),HVAC(空调系统),Electrial,Hot Water Systems,Cold Water SYstems and Vertical Transportation Systems(垂直运输系统)
+
+1.2.2.8
+在完成了几何体，构造体类型，空间类型和其他的针对建筑的修改后，BIM模型已经做好了工程量与成本分析的验证。验证程序将通过导出IFC文件并使用模型检查工具确保MVD需求是否符合的方式进行。
+
+1.3 数据对象的规格
+
+在概念设计阶段，很多建筑数据对象设计者都不会去建模，但是这些描述数据却提供了有用的数据用于准备成本估算。
+
+Site对象
+工业分类来源是UniFormat.参看1.3.1.6
+
+Building对象
+其功能分类源为OmniClass Table 11.(construction entities by function，功能区分的构造体实体)
+
+Building Story对象
+没有公认的功能分类来源。模型的描述符已经足够了。
+高于或者低于水平面使用通用的描述符。
+
+Space对象
+参看1.3.1.4，工业空间类型库
+
+Wall对象
+工业分类来源为UniFormat.
+
+每个对象都应有一个指示器用于安装承重轴或非承重轴
+每个对象都应有一个指示器用于标识防火等级（包含非适用范围的描述）
+
+Slab对象
+工业分类来源是UniFormat.
+
+Beam对象
+工业分类来源是UniFormat.
+
+Column对象
+工业分类来源是UniFormat.
+
+Opening对象
+不需要工业分类。
+
+Door对象
+工业分类来源是UniFormat.
+每个对象都应有一个指示器用于标识防火等级（包含非适用范围的描述）
+
+Window对象
+工业分类来源是UniFormat.
+
+Curtain Wall对象
+工业分类来源是UniFormat.
+
+Stair Flight对象
+工业分类来源是UniFormat.
+
+Ramp Flight对象
+工业分类来源是UniFormat.
+
+Equipment对象
+工业分类来源于OmniClass table 23.
+
+Plumbling Fixtures对象(垂直填充物，管道附件)
+工业分类来源是UniFormat.
+
+HVAC System对象
+工业分类来源是UniFormat.
+
+Electrical System对象
+工业分类来源是UniFormat.
+
+Hot Water System对象
+工业分类来源是UniFormat.
+
+Cold Water System对象
+工业分类来源是UniFormat.
+
+Vertical Circulation System（垂直循环系统）对象
+工业分类来源是UniFormat.
+
+1.3.1.2 工业构造体类型库
+实验平台用工业构造体数据库 BPEA(Building Performance and Energy Analysis 建筑性能与能量分析)Thread构造体类型数据。BPEA工业构造体类型库来自多个数据源。该库可以用过web访问，或者直接内嵌在BIM认证的应用程序里面。
+
+1.3.1.3 项目构造提类型库
+一个项目的项目构造体类型数据库是由工业构造体类型库所衍生而出，它反映了设计师针对工业数据源数据的一系列修改与添加。
+
+1.3.1.4 工业空间类型库
+工业空间类型库使用OmniClass table 13（空间的功能分区）定义空间功能。一个可选的第二种分类方式是基于形状，该分类方式使用了OmniClass table 14（空间的形状）
+
+同样他们也可以通过web访问或者内嵌在BIM认证的应用程序。
+
+根据建筑业主和项目组的需求，一个单独的空间可能分配有一个，两个，三个或者更多的空间类型.来自于GSA，CSI，ICC的多个正在进行中的项目致力于互相映射多个命名分类系统，当这些工作完成后，一个包含着一致的、清晰的空间名称映射的BIM成为可能。
+
+1.3.1.5 项目空间类型库
+一个项目的项目空间类型库是有工业空间类型库衍生而出，它反映了设计师针对工业数据源数据的一系列修改与添加。
+
+1.3.1.6
+工业分类库 - UniFormat
+许多对象类型的工业分类称为UniFormat.在早期设计阶段，设计师不会在模型对象设计足够细节或者根本就不会去建模该对象。这将只允许使用高级别UniFormat元素的标题，同时不允许使用UniFormat传递设计者的意图给评估者。
+
+在对象模型与工业分类的一对一映射中，一些没有建模的对象依靠相应的Level 2 UniFormat元素的标题：HVAC系统对象-D30供暖，通气与空气调节，供电系统对象-D50电力，垂直流通对象-D10 输送。Site对象使用一级元素标题，G Building Sitework。其他对象，例如热水供应系统和冷水供应系统，使用三级标题（D2020 生活用水供应）
+
+建模对象有一些相似性的问题。考虑
 
 
 
